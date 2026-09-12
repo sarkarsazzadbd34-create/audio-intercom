@@ -1,0 +1,13 @@
+{
+  "name": "audio-intercom-signaling",
+  "version": "1.0.0",
+  "description": "Free/open-source WebSocket signaling relay for the Audio Transmitter/Receiver pairing app (internet mode).",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.17.0"
+  }
+}

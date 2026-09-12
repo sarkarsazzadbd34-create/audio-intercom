@@ -1,0 +1,31 @@
+# Sample coturn (open-source TURN/STUN server) config for internet mode.
+# Install: sudo apt install coturn   (Debian/Ubuntu)
+# Copy to /etc/turnserver.conf, edit the values below, then:
+#   sudo systemctl enable --now coturn
+#
+# Free public STUN (e.g. stun:stun.l.google.com:19302) is usually enough
+# to discover a phone's public IP, but a relay (TURN) is needed when both
+# phones are behind symmetric/carrier-grade NAT. Self-hosting coturn keeps
+# this 100% free and under your control.
+
+listening-port=3478
+tls-listening-port=5349
+
+# Replace with your VPS's public IP
+external-ip=YOUR.SERVER.PUBLIC.IP
+
+# Long-term credential mechanism
+lt-cred-mech
+user=introuser:CHANGE_THIS_PASSWORD
+realm=yourdomain.example
+
+# Use a free Let's Encrypt cert for TLS TURN (turns:)
+cert=/etc/letsencrypt/live/yourdomain.example/fullchain.pem
+pkey=/etc/letsencrypt/live/yourdomain.example/privkey.pem
+
+no-tcp-relay=no
+fingerprint
+total-quota=100
+stale-nonce=600
+no-multicast-peers
+no-cli
